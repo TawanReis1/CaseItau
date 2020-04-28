@@ -3,7 +3,6 @@ using Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using Infrastructure.CrossCutting.Utils;
@@ -35,7 +34,7 @@ namespace Services
                 ).OrderByDescending(x => x.PontuacaoTotal).ToList();
 
             var timeComparado = time.ToUpper();
-            timeComparado = TratarTexto.RetirarAcentuacao(timeComparado);
+            timeComparado = timeComparado.RetirarAcentuacao();
 
             int posicaoTimeComparado = timesAgrupado.FindIndex(x => x.Nome == timeComparado) + 1;
 
@@ -111,29 +110,14 @@ namespace Services
             {
                 foreach (var linha in linhas)
                 {
-                    var linhaTratada = TratarTexto.Formatar(linha);
+                    var linhaTratada = linha.Formatar();
                     var time = new Time();
 
                     var linhaTratadaSeparadas = linhaTratada.Split(",").ToList();
 
                     if (linhaTratadaSeparadas != null && linhaTratadaSeparadas.Count == 10 && !linhaTratadaSeparadas[0].Contains("POS"))
                     {
-                        switch(linhaTratadaSeparadas[1])
-                        {
-                            case "ATHLETICO PR":
-                                linhaTratadaSeparadas[1] = "ATLETICO PR";
-                                break;
-
-                            case "VASCO DA GAMA":
-                                linhaTratadaSeparadas[1] = "VASCO";
-                                break;
-
-                            case "CORITITA":
-                                linhaTratadaSeparadas[1] = "CORITIBA";
-                                break;
-                            default:
-                                break;
-                        }
+                        linhaTratadaSeparadas[1] = linhaTratadaSeparadas[1].CorrigirOrtografia();
 
                         time.Posicao = Int32.Parse(linhaTratadaSeparadas[0]);
                         time.Nome = linhaTratadaSeparadas[1];
