@@ -136,7 +136,7 @@ namespace Services
                         }
 
                         time.Posicao = Int32.Parse(linhaTratadaSeparadas[0]);
-                        time.Nome = linhaTratadaSeparadas[1] == "ATHLETICO PR" ? "ATLETICO PR" : linhaTratadaSeparadas[1];
+                        time.Nome = linhaTratadaSeparadas[1];
                         time.Estado = linhaTratadaSeparadas[2];
                         time.Pontos = Int32.Parse(linhaTratadaSeparadas[3]);
                         time.Jogos = Int32.Parse(linhaTratadaSeparadas[4]);
