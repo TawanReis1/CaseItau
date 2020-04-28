@@ -41,8 +41,8 @@ namespace API
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Informações Campeonato API",
-                    Description = "API para teste Itaú. Análise do Campeonato Brasileiro, período de 2015 a 2019.",
+                    Title = "API Informações Campeonato",
+                    Description = "API que realiza análise do Campeonato Brasileiro, período de 2015 a 2019.",
                     Contact = new OpenApiContact() { Name = "Tawan Reis de Abreu", Email = "tawanreis1@hotmail.com", Url = new Uri("https://github.com/TawanReis1") }
                 });
 
