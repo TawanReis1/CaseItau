@@ -16,6 +16,8 @@ Após o download ser concluído, execute o projeto com o auxílio do Visual Stud
 
 
 ## Utilização
+***OBS: Os dados são recuperados a partir do arquivo .txt que está no caminho seguinte caminho: '../CaseItau/DadosCampeonato.txt. Caso esse arquivo tenha o seu local alterado, o funcionamento da API será comprometido.'***
+
 A utilização da API é realizada através de um Swagger, onde é possível realizar as chamadas de uma maneira um pouco mais intuitiva. Essa é a visão incial:
 
 ![Swagger reduzido](https://user-images.githubusercontent.com/40872077/80543622-aa5b7e80-8985-11ea-999c-8aa7432f29e9.png)
