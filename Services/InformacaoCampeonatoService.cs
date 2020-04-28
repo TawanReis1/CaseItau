@@ -14,12 +14,10 @@ namespace Services
 {
     public class InformacaoCampeonatoService : IInformacaoCampeonatoService
     {
-        private readonly IMapper _mapper;
         private IHostingEnvironment _env;
         private readonly ILogger<InformacaoCampeonatoService> _logger;
-        public InformacaoCampeonatoService(IMapper mapper, IHostingEnvironment env, ILogger<InformacaoCampeonatoService> logger)
+        public InformacaoCampeonatoService(IHostingEnvironment env, ILogger<InformacaoCampeonatoService> logger)
         {
-            _mapper = mapper;
             _env = env;
             _logger = logger;
         }
