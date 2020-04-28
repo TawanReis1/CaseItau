@@ -1,0 +1,128 @@
+﻿2015
+
+Pos	Time			Estado		P	J	V	E	D	GP	GC	
+---------------------------------------------------------
+01	Corinthians		SP		81	38	24	9	5	71	31
+02	Atletico MG		MG		69	38	21	6	11	65	47
+03	Grêmio			RS		68	38	20	8	10	52	32
+04	São Paulo		SP		62	38	18	8	12	53	47
+05	Internacional		RS		60	38	17	9	12	39	38
+06	Sport			PE		59	38	15	14	9	53	38
+07	Santos			SP		58	38	16	10	12	59	41
+08	Cruzeiro		MG		55	38	15	10	13	44	35
+09	Palmeiras		SP		53	38	15	8	15	60	51
+10	Atletico Pr		PR		51	38	14	9	15	43	48
+11	Ponte Preta		SP		51	38	13	12	13	41	40
+12	Flamengo		RJ		49	38	15	4	19	45	53
+13	Fluminense		RJ		47	38	14	5	19	40	49
+14	Chapecoense		SC		47	38	12	11	15	34	44
+15	Coritita		PR		44	38	11	11	16	31	42
+16	Figueirense		SC		43	38	11	10	17	36	50
+17	Avaí			SC		42	38	11	9	18	38	60
+18	Vasco			RJ		41	38	10	11	17	28	54
+19	Goias			GO		38	38	10	8	20	39	49
+20	Joinvile		SC		31	38	7	10	21	26	48
+
+2016
+
+Pos	Time			Estado		P	J	V	E	D	GP	GC
+---------------------------------------------------------
+
+01	Palmeiras		SP		80	38	24	8	6	62	32
+02	Santos			SP		71	38	22	5	11	59	35
+03	Flamengo		RJ		71	38	20	11	7	52	35
+04	Atlético Mg		MG		62	38	17	11	10	61	53
+05	Botafogo		RJ		59	38	17	8	13	43	39
+06	Atlético Pr		PR		57	38	17	6	15	38	32
+07	Corinthians		SP		55	38	15	10	13	48	42
+08	Ponte Preta		SP		53	38	15	8	15	48	52
+09	Grêmio			RS		53	38	14	11	13	41	44
+10	São Paulo		SP		52	38	14	10	14	44	36
+11	Chapecoense		SC		52	38	13	13	12	49	56
+12	Cruzeiro		MG		51	38	14	9	15	48	49
+13	Fluminense		RJ		50	38	13	11	14	45	45
+14	Sport			PE		47	38	13	8	17	49	55
+15	Coritiba		PR		46	38	11	13	14	41	42
+16	Vitória			PE		45	38	12	9	17	51	53
+17	Internacional		RS		43	38	11	10	17	35	41
+18	Figueirense		SC		37	38	8	13	17	30	50
+19	Santa Cruz		PE		28	38	8	7	23	45	69
+20	América Mineiro		MG		28	38	7	7	24	23	58
+
+2017
+
+Pos	Times			Estado		P	J	V	E	D	GP	GC
+---------------------------------------------------------
+
+01	Corinthians		SP		72	38	21	9	8	50	30
+02	Palmeiras		SP		63	38	19	6	13	61	45
+03	Santos			SP		63	38	17	12	9	42	32
+04	Grêmio			RS		62	38	18	8	12	55	36
+05	Cruzeiro		MG		57	38	15	12	11	47	39
+06	Flamengo		RJ		56	38	15	11	12	49	38
+07	Vasco			RJ		56	38	15	11	12	40	47
+08	Chapecoense		SC		54	38	15	9	14	47	49
+09	Atlético MG		MG		54	38	14	12	12	52	49
+10	Botafogo		RJ		53	38	14	11	13	45	42
+11	Atlético PR		PR		51	38	14	9	15	45	43
+12	Bahia			BA		50	38	13	11	14	50	48
+13	São Paulo		SP		50	38	13	11	14	48	49
+14	Fluminense		RJ		47	38	11	14	13	50	53
+15	Sport			PE		45	38	12	9	17	46	58
+16	Vitória			BA		43	38	11	10	17	50	58
+17	Coritiba		PR		43	38	11	10	17	42	51
+18	Avaí			SC		43	38	10	13	15	29	48
+19	Ponte Preta		SP		39	38	10	9	19	37	52
+20	Atlético Goias		GO		36	38	9	9	20	38	56
+
+2018
+
+Pos	Times			Estado		P	J	V	E	D	GP	GC
+---------------------------------------------------------
+
+01	Palmeiras		SP		80	38	23	11	4	64	26
+02	Flamengo		RJ		72	38	21	9	8	59	29
+03	Internacional		RS		69	38	19	12	7	51	29
+04	Grêmio			RS		66	38	18	12	8	48	27
+05	São Paulo		SP		63	38	16	15	7	46	34
+06	Atlético MG		MG		59	38	17	8	13	56	43
+07	Atlético PR		PR		57	38	16	9	13	54	37
+08	Cruzeiro		MG		53	38	14	11	13	34	34
+09	Botafogo		RJ		51	38	13	12	13	38	46
+10	Santos			SP		50	38	13	11	14	46	40
+11	Bahia			BA		48	38	12	12	14	39	41
+12	Fluminense		RJ		45	38	12	9	17	32	46
+13	Corinthians		SP		44	38	11	11	16	34	35
+14	Chapecoense		SC		44	38	11	11	16	34	50
+15	Ceará			CE		44	38	10	14	14	32	38
+16	Vasco da Gama		RJ		43	38	10	13	15	41	48
+17	América Mineiro		MG		40	38	10	10	18	30	47
+18	Sport			PE		39	38	11	9	18	35	57
+19	Vitória			BA		37	38	9	10	19	36	63
+20	Paraná			PR		23	38	4	11	23	18	57
+
+2019
+
+Pos	Times			Estado		P	J	V	E	D	GP	GC
+---------------------------------------------------------
+
+01	Flamengo		RJ		90	38	28	6	4	86	37
+02	Santos			SP		74	38	22	8	8	60	33
+03	Palmeiras		SP		74	38	21	11	6	61	32
+04	Grêmio			RS		65	38	19	8	11	64	39
+05	Athletico PR		PR		64	38	18	10	10	51	32
+06	São Paulo		SP		63	38	17	12	9	39	30
+07	Internacional		RS		57	38	16	9	13	44	39
+08	Corinthians		SP		56	38	14	14	10	42	34
+09	Fortaleza		CE		53	38	15	8	15	50	49
+10	Goiás			GO		52	38	15	7	16	46	64
+11	Bahia			BA		49	38	12	13	13	44	43
+12	Vasco da Gama		RJ		49	38	12	13	13	39	45
+13	Atlético MG		MG		48	38	13	9	16	45	49
+14	Fluminense		RJ		46	38	12	10	16	38	46
+15	Botafogo		RJ		43	38	13	4	21	31	45
+16	Ceará			CE		39	38	10	9	19	36	41
+17	Cruzeiro		MG		36	38	7	15	16	27	46
+18	CSA			AL		32	38	8	8	22	24	58
+19	Chapecoense		SC		32	38	7	11	20	31	52
+20	Avaí			SC		20	38	3	11	24	18	62
