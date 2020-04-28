@@ -6,7 +6,7 @@ API possui como objetivo retornar dados estatísticos do campeonato brasileiro, 
 
 Baixe o projeto através do GitHub ou copie o comando e execute em seu console.
 
-É imprescindível que você tenha o git instalado em sua máquina para executar o comando acima, caso não tenha, pode realizar o download [aqui](https://git-scm.com/downloads).
+É imprescindível que você tenha o git instalado em sua máquina para executar o comando abaixo, caso não tenha, pode realizar o download [aqui](https://git-scm.com/downloads).
 
 ```bash
 git clone https://github.com/TawanReis1/CaseItau.git
