@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Domain.DTOs;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Net;
 
 namespace API.Controllers
 {
@@ -38,7 +39,7 @@ namespace API.Controllers
                 var informacoesTime = _informacaoCampeonatoService.ObterInformacoesPorTime(time);
                 _logger.LogInformation("Finalizou o processamento no serviço.");
 
-                if (informacoesTime != null && informacoesTime.Count == 0)
+                if (informacoesTime == null || informacoesTime.Count == 0)
                 {
                     _logger.LogError("O time: {time} não foi encontrado no campeonato desse período (2015 a 2019)", time);
                     return BadRequest(new ErroViewModel(msg: "Time digitado não existe e/ou não participou do campeonato nesse período."));
@@ -49,12 +50,12 @@ namespace API.Controllers
 
                 return Ok(new SucessoViewModel(resultado, msg: "Informação do time retornada com sucesso!"));
 
-            } catch (Exception erro)
+            }
+            catch (Exception erro)
             {
                 _logger.LogCritical("Erro ao executar a controladora: {erro}", erro);
-                throw erro;
+                return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
             }
-
         }
 
         [HttpGet("estado")]
@@ -68,7 +69,7 @@ namespace API.Controllers
                 var informacoesTimeEstado = _informacaoCampeonatoService.ObterInformacoesPorEstado(estado);
                 _logger.LogInformation("Finalizou o processamento no serviço.");
 
-                if (informacoesTimeEstado != null && informacoesTimeEstado.Count == 0)
+                if (informacoesTimeEstado == null || informacoesTimeEstado.Count == 0)
                 {
                     _logger.LogError("O estado: {estado} não foi encontrado no campeonato desse período (2015 a 2019)", estado);
                     return BadRequest(new ErroViewModel(msg: "Estado digitado não existe e/ou não participou do campeonato nesse período."));
@@ -79,10 +80,11 @@ namespace API.Controllers
 
                 return Ok(new SucessoViewModel(resultado, msg: "Informações dos times baseado no estado retornada com sucesso!"));
 
-            } catch (Exception erro)
+            }
+            catch (Exception erro)
             {
                 _logger.LogCritical("Erro ao executar a controladora: {erro}", erro);
-                throw erro;
+                return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
             }
 
         }
@@ -98,13 +100,13 @@ namespace API.Controllers
                 var informacoesComplementares = _informacaoCampeonatoService.ObterInformacoesComplementares();
                 _logger.LogInformation("Finalizou o processamento no serviço.");
 
-
                 return Ok(new SucessoViewModel(informacoesComplementares, msg: "Informações complementares retornada com sucesso!"));
 
-            } catch (Exception erro)
+            }
+            catch (Exception erro)
             {
                 _logger.LogCritical("Erro ao executar a controladora: {erro}", erro);
-                throw erro;
+                return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
             }
         }
     }

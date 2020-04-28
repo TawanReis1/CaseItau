@@ -17,9 +17,11 @@ namespace API.Mapping
                     {
                         dest.Estado = src.FirstOrDefault().Estado;
                         dest.Posicao = src.FirstOrDefault().Posicao;
+                        int campeonatosParticipados = src.GroupBy(g => g.AnoParticipacao).ToList().Count();
 
                         foreach (var time in src)
                         {
+
                             dest.PontuacaoTotal += time.Pontos;
                             dest.TotalJogos += time.Jogos;
                             dest.TotalVitorias += time.Vitorias;
@@ -28,7 +30,7 @@ namespace API.Mapping
                             dest.TotalGolsFavor += time.GolsFavor;
                             dest.TotalGolsContra += time.GolsContra;
                             dest.SaldoGols = dest.TotalGolsFavor - dest.TotalGolsContra;
-                            dest.QuantidadeCampeonatosDisputados = src.Count;
+                            dest.QuantidadeCampeonatosDisputados = campeonatosParticipados;
                         }
                     }
                 });

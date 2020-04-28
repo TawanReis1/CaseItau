@@ -2,6 +2,7 @@
 {
     public class Time
     {
+        public int AnoParticipacao { get; set; }
         public int Posicao { get; set; }
 
         public string Nome { get; set; }

@@ -24,7 +24,7 @@ namespace Services
         public List<Time> ObterInformacoesPorTime(string time)
         {
             var dadosCampeonato = ObterDadosCampeonato();
-            var timesAgrupado = dadosCampeonato.GroupBy(x => x.Nome)
+            var timesAgrupadosPorNome = dadosCampeonato.GroupBy(x => x.Nome)
                 .Select(
                     g => new
                     {
@@ -36,7 +36,7 @@ namespace Services
             var timeComparado = time.ToUpper();
             timeComparado = timeComparado.RetirarAcentuacao();
 
-            int posicaoTimeComparado = timesAgrupado.FindIndex(x => x.Nome == timeComparado) + 1;
+            int posicaoTimeComparado = timesAgrupadosPorNome.FindIndex(x => x.Nome == timeComparado) + 1;
 
             var informacoesTime = dadosCampeonato.Where(x => x.Nome == timeComparado)
                 .Select(y => { y.Posicao = posicaoTimeComparado; return y; }).ToList();
@@ -48,18 +48,18 @@ namespace Services
         public List<Time> ObterInformacoesPorEstado(string estado)
         {
             var dadosCampeonato = ObterDadosCampeonato();
-            var timesAgrupado = dadosCampeonato.GroupBy(x => x.Estado)
+            var timesAgrupadosPorEstado = dadosCampeonato.GroupBy(x => x.Estado)
                 .Select(
                     g => new
                     {
-                        Nome = g.Key,
+                        Estado = g.Key,
                         PontuacaoTotal = g.Sum(s => s.Pontos),
+                        AnoParticipacao = g.GroupBy(g => g.AnoParticipacao).ToList()
                     }
                 ).OrderByDescending(x => x.PontuacaoTotal).ToList();
 
             var estadoComparado = estado.ToUpper();
-
-            int posicaoEstadoComparado = timesAgrupado.FindIndex(x => x.Nome == estadoComparado) + 1;
+            int posicaoEstadoComparado = timesAgrupadosPorEstado.FindIndex(x => x.Estado == estadoComparado) + 1;
 
             var informacoesTime = dadosCampeonato.Where(x => x.Estado == estadoComparado)
                 .Select(y => { y.Posicao = posicaoEstadoComparado; return y; }).ToList();
@@ -108,6 +108,8 @@ namespace Services
 
             if (linhas != null && linhas.Count > 0)
             {
+                int anoParticipacao = 0;
+
                 foreach (var linha in linhas)
                 {
                     var linhaTratada = linha.Formatar();
@@ -115,10 +117,16 @@ namespace Services
 
                     var linhaTratadaSeparadas = linhaTratada.Split(",").ToList();
 
+                    if (linhaTratadaSeparadas != null && linhaTratadaSeparadas.Count == 1 && linhaTratadaSeparadas[0].Length == 4)
+                    {
+                        anoParticipacao = Int32.Parse(linhaTratadaSeparadas[0]);
+                    }
+
                     if (linhaTratadaSeparadas != null && linhaTratadaSeparadas.Count == 10 && !linhaTratadaSeparadas[0].Contains("POS"))
                     {
                         linhaTratadaSeparadas[1] = linhaTratadaSeparadas[1].CorrigirOrtografia();
 
+                        time.AnoParticipacao = anoParticipacao;
                         time.Posicao = Int32.Parse(linhaTratadaSeparadas[0]);
                         time.Nome = linhaTratadaSeparadas[1];
                         time.Estado = linhaTratadaSeparadas[2];
