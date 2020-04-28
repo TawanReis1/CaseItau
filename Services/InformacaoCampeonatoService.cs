@@ -27,10 +27,22 @@ namespace Services
         public List<Time> ObterInformacoesPorTime(string time)
         {
             var dadosCampeonato = ObterDadosCampeonato();
+            var timesAgrupado = dadosCampeonato.GroupBy(x => x.Nome)
+                .Select(
+                    g => new
+                    {
+                        Nome = g.Key,
+                        PontuacaoTotal = g.Sum(s => s.Pontos),
+                    }
+                ).OrderByDescending(x => x.PontuacaoTotal).ToList();
+
             var timeComparado = time.ToUpper();
             timeComparado = TratarTexto.RetirarAcentuacao(timeComparado);
 
-            var informacoesTime = dadosCampeonato.Where(x => x.Nome == timeComparado).ToList();
+            int posicaoTimeComparado = timesAgrupado.FindIndex(x => x.Nome == timeComparado) + 1;
+
+            var informacoesTime = dadosCampeonato.Where(x => x.Nome == timeComparado)
+                .Select(y => { y.Posicao = posicaoTimeComparado; return y; }).ToList();
             _logger.LogInformation("Lista filtrada para trazer apenas informações do time: {time}.", time);
 
             return informacoesTime;
@@ -39,9 +51,21 @@ namespace Services
         public List<Time> ObterInformacoesPorEstado(string estado)
         {
             var dadosCampeonato = ObterDadosCampeonato();
+            var timesAgrupado = dadosCampeonato.GroupBy(x => x.Estado)
+                .Select(
+                    g => new
+                    {
+                        Nome = g.Key,
+                        PontuacaoTotal = g.Sum(s => s.Pontos),
+                    }
+                ).OrderByDescending(x => x.PontuacaoTotal).ToList();
+
             var estadoComparado = estado.ToUpper();
 
-            var informacoesTime = dadosCampeonato.Where(x => x.Estado == estadoComparado).ToList();
+            int posicaoEstadoComparado = timesAgrupado.FindIndex(x => x.Nome == estadoComparado) + 1;
+
+            var informacoesTime = dadosCampeonato.Where(x => x.Estado == estadoComparado)
+                .Select(y => { y.Posicao = posicaoEstadoComparado; return y; }).ToList();
             _logger.LogInformation("Lista filtrada para trazer apenas informações do estado: {estado}.", estado);
 
             return informacoesTime;
@@ -54,7 +78,7 @@ namespace Services
                 .Select(
                     g => new
                     {
-                        Key = char.ToUpper(g.Key.First()) + g.Key.Substring(1).ToLower(),
+                        Nome = char.ToUpper(g.Key.First()) + g.Key.Substring(1).ToLower(),
                         Vitorias = g.Sum(s => s.Vitorias),
                         MediaVitorias = g.Average(s => s.Vitorias),
                         MediaGolsFavor = g.Average(s => s.GolsFavor),
@@ -66,12 +90,12 @@ namespace Services
 
             var informacaoComplementar = new InformacaoComplementar();
 
-            informacaoComplementar.MelhorMediaGolsFavor = timesAgrupado.OrderBy(x => x.MediaGolsFavor).ToList().LastOrDefault().Key;
-            informacaoComplementar.MelhorMediaGolsContra = timesAgrupado.OrderBy(x => x.MediaGolsContra).ToList().FirstOrDefault().Key;
-            informacaoComplementar.MaiorNumeroVitorias = timesAgrupado.OrderBy(x => x.Vitorias).ToList().LastOrDefault().Key;
-            informacaoComplementar.MenorNumeroVitorias = timesAgrupado.OrderBy(x => x.Vitorias).ToList().FirstOrDefault().Key;
-            informacaoComplementar.MelhorMediaVitoriasPorCampeonato = timesAgrupado.OrderBy(x => x.MediaVitorias).ToList().LastOrDefault().Key;
-            informacaoComplementar.MenorMediaVitoriasPorCampeonato = timesAgrupado.OrderBy(x => x.MediaVitorias).ToList().FirstOrDefault().Key;
+            informacaoComplementar.MelhorMediaGolsFavor = timesAgrupado.OrderBy(x => x.MediaGolsFavor).ToList().LastOrDefault().Nome;
+            informacaoComplementar.MelhorMediaGolsContra = timesAgrupado.OrderBy(x => x.MediaGolsContra).ToList().FirstOrDefault().Nome;
+            informacaoComplementar.MaiorNumeroVitorias = timesAgrupado.OrderBy(x => x.Vitorias).ToList().LastOrDefault().Nome;
+            informacaoComplementar.MenorNumeroVitorias = timesAgrupado.OrderBy(x => x.Vitorias).ToList().FirstOrDefault().Nome;
+            informacaoComplementar.MelhorMediaVitoriasPorCampeonato = timesAgrupado.OrderBy(x => x.MediaVitorias).ToList().LastOrDefault().Nome;
+            informacaoComplementar.MenorMediaVitoriasPorCampeonato = timesAgrupado.OrderBy(x => x.MediaVitorias).ToList().FirstOrDefault().Nome;
 
             _logger.LogInformation("Finalizado lógica de comparação.");
 
@@ -96,6 +120,23 @@ namespace Services
 
                     if (linhaTratadaSeparadas != null && linhaTratadaSeparadas.Count == 10 && !linhaTratadaSeparadas[0].Contains("POS"))
                     {
+                        switch(linhaTratadaSeparadas[1])
+                        {
+                            case "ATHLETICO PR":
+                                linhaTratadaSeparadas[1] = "ATLETICO PR";
+                                break;
+
+                            case "VASCO DA GAMA":
+                                linhaTratadaSeparadas[1] = "VASCO";
+                                break;
+
+                            case "CORITITA":
+                                linhaTratadaSeparadas[1] = "CORITIBA";
+                                break;
+                            default:
+                                break;
+                        }
+
                         time.Posicao = Int32.Parse(linhaTratadaSeparadas[0]);
                         time.Nome = linhaTratadaSeparadas[1] == "ATHLETICO PR" ? "ATLETICO PR" : linhaTratadaSeparadas[1];
                         time.Estado = linhaTratadaSeparadas[2];

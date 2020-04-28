@@ -26,11 +26,6 @@ namespace API.Controllers
             _logger = logger;
         }
 
-        /// <summary>
-        /// Teste teste
-        /// </summary>
-        /// <param name="time">asdasd123</param>
-        /// <returns></returns>
         [HttpGet("time")]
         [ProducesResponseType(typeof(InformacaoTimeResponse), StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
