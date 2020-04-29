@@ -53,7 +53,7 @@ namespace API.Controllers
             catch (Exception erro)
             {
                 _logger.LogCritical("Erro ao executar a requisição: {erro}", erro.Message);
-                return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
+                return BadRequest(new ErroViewModel(msg: erro.Message));
             }
         }
 
@@ -82,7 +82,7 @@ namespace API.Controllers
             catch (Exception erro)
             {
                 _logger.LogCritical("Erro ao executar a requisição: {erro}", erro.Message);
-                return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
+                return BadRequest(new ErroViewModel(msg: erro.Message));
             }
 
         }
@@ -103,7 +103,7 @@ namespace API.Controllers
             catch (Exception erro)
             {
                 _logger.LogCritical("Erro ao executar a requisição: {erro}", erro.Message);
-                return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
+                return BadRequest(new ErroViewModel(msg: erro.Message));
             }
         }
     }

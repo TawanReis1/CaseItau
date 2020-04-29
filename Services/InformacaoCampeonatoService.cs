@@ -92,7 +92,7 @@ namespace Services
 
         private List<Time> ObterDadosCampeonatos()
         {
-            var linhas = File.ReadAllLines(_env.ContentRootPath + "/DadosCampeonato.txt").ToList();
+            var linhas = File.ReadAllLines(_env.ContentRootPath + "/DadosCampeonatos.txt").ToList();
             var timesFormatados = new List<Time>();
 
             if (linhas != null && linhas.Count > 0)
@@ -130,10 +130,6 @@ namespace Services
                         timesFormatados.Add(time);
                     }
                 }
-            }
-            else
-            {
-                throw new ArgumentException("Arquivo não encontrado e/ou inexistente.");
             }
 
             return timesFormatados;

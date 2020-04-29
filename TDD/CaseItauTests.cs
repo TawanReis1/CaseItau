@@ -57,8 +57,8 @@ namespace TDD
             _informacaoCampeonatoService.Setup(x => x.ObterInformacoesPorTime(time)).Throws<Exception>();
 
             var resultado = _informacaoCaompeonatoController.ObterInformacoesPorTime(time);
-            var resultadoErro = Assert.IsType<StatusCodeResult>(resultado);
-            Assert.Equal(500, resultadoErro.StatusCode);
+            var resultadoErro = Assert.IsType<BadRequestObjectResult>(resultado);
+            Assert.Equal(400, resultadoErro.StatusCode);
         }
         #endregion
 
@@ -91,8 +91,8 @@ namespace TDD
             _informacaoCampeonatoService.Setup(x => x.ObterInformacoesPorEstado(estado)).Throws<Exception>();
 
             var resultado = _informacaoCaompeonatoController.ObterInformacoesPorEstado(estado);
-            var resultadoErro = Assert.IsType<StatusCodeResult>(resultado);
-            Assert.Equal(500, resultadoErro.StatusCode);
+            var resultadoErro = Assert.IsType<BadRequestObjectResult>(resultado);
+            Assert.Equal(400, resultadoErro.StatusCode);
         }
 
         #endregion
@@ -127,8 +127,8 @@ namespace TDD
 
             var resultado = _informacaoCaompeonatoController.ObterInformacoesComplementares();
 
-            var erroResultado = Assert.IsType<StatusCodeResult>(resultado);
-            Assert.Equal(500, erroResultado.StatusCode);
+            var resultadoErro = Assert.IsType<BadRequestObjectResult>(resultado);
+            Assert.Equal(400, resultadoErro.StatusCode);
         }
 
         #endregion

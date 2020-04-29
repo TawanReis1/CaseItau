@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infrastructure.CrossCutting.Utils;
+using System;
 
 namespace Infrastructure.CrossCutting.Application.Models
 {
@@ -9,7 +10,7 @@ namespace Infrastructure.CrossCutting.Application.Models
         {
             Status = status;
 
-            Mensagem = msg;
+            Mensagem = msg.TratarErro();
         }
     }
 }
