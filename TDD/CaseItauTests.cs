@@ -43,24 +43,6 @@ namespace TDD
 
             _informacaoCampeonatoService.Setup(x => x.ObterInformacoesPorTime(time)).Returns(dados);
 
-            //InformacaoTimeResponse informacaoTimeMapeada = new InformacaoTimeResponse()
-            //{
-            //    Posicao = 7,
-            //    Nome = "São Paulo",
-            //    PontuacaoTotal = 270,
-            //    TotalJogos = 190,
-            //    TotalVitorias = 78,
-            //    TotalEmpates = 56,
-            //    TotalDerrotas = 56,
-            //    TotalGolsFavor = 230,
-            //    TotalGolsContra = 196,
-            //    SaldoGols = 34,
-            //    QuantidadeCampeonatosDisputados = 5
-            //};
-
-            //var mapeado = _mapper.Setup(x => x.Map<InformacaoTimeResponse>(informacoesTimeSelecionado)).Returns(informacaoTimeMapeada);
-
-
             var resultado = _informacaoCaompeonatoController.ObterInformacoesPorTime(time);
             var okResultado = resultado as OkObjectResult;
 
@@ -94,24 +76,6 @@ namespace TDD
             dados.Add(new Time { Posicao = 7, Nome = "Fluminense", Estado = "RJ", Pontos = 43, Jogos = 38, Vitorias = 15, Empates = 13, Derrotas = 11, GolsFavor = 59, GolsContra = 39 });
 
             _informacaoCampeonatoService.Setup(x => x.ObterInformacoesPorEstado(estado)).Returns(dados);
-
-            //InformacaoTimeResponse informacaoTimeMapeada = new InformacaoTimeResponse()
-            //{
-            //    Posicao = 2,
-            //    Estado = "RJ",
-            //    PontuacaoTotal = 968,
-            //    TotalJogos = 684,
-            //    TotalVitorias = 265,
-            //    TotalEmpates = 173,
-            //    TotalDerrotas = 246,
-            //    TotalGolsFavor = 801,
-            //    TotalGolsContra = 797,
-            //    SaldoGols = 4,
-            //    QuantidadeCampeonatosDisputados = 18
-            //};
-
-            //var mapeado = _mapper.Setup(x => x.Map<InformacaoTimeResponse>(informacoesTimeSelecionado)).Returns(informacaoTimeMapeada);
-
 
             var resultado = _informacaoCaompeonatoController.ObterInformacoesPorEstado(estado);
             var okResultado = resultado as OkObjectResult;
