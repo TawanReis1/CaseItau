@@ -6,7 +6,7 @@ API possui como objetivo retornar dados estatísticos do campeonato brasileiro, 
 
 Baixe o projeto através do GitHub ou copie o comando e execute em seu console.
 
-É imprescindível que você tenha o git instalado em sua máquina para executar o comando acima, caso não tenha, pode realizar o download [aqui](https://git-scm.com/downloads).
+É imprescindível que você tenha o git instalado em sua máquina para executar o comando abaixo, caso não tenha, pode realizar o download [aqui](https://git-scm.com/downloads).
 
 ```bash
 git clone https://github.com/TawanReis1/CaseItau.git
@@ -16,7 +16,7 @@ Após o download ser concluído, execute o projeto com o auxílio do Visual Stud
 
 
 ## Utilização
-***OBS: Os dados são recuperados a partir do arquivo .txt que está no caminho seguinte caminho: '../CaseItau/DadosCampeonato.txt. Caso esse arquivo tenha o seu local alterado, o funcionamento da API será comprometido.'***
+***OBS: Os dados são recuperados a partir do arquivo .txt que está no seguinte caminho: '../CaseItau/DadosCampeonato.txt. Caso esse arquivo tenha o seu local alterado, o funcionamento da API será comprometido.'***
 
 A utilização da API é realizada através de um Swagger, onde é possível realizar as chamadas de uma maneira um pouco mais intuitiva. Essa é a visão incial:
 
