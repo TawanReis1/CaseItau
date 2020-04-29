@@ -15,15 +15,15 @@ namespace Infrastructure.CrossCutting.Utils
 
         public static string RetirarAcentuacao(this string linhaFormatada)
         {
-            StringBuilder sbReturn = new StringBuilder();
-            var arrayText = linhaFormatada.Normalize(NormalizationForm.FormD).ToCharArray();
-            foreach (char letter in arrayText)
+            StringBuilder sb = new StringBuilder();
+            var listaTexto = linhaFormatada.Normalize(NormalizationForm.FormD).ToCharArray();
+            foreach (char letra in listaTexto)
             {
-                if (CharUnicodeInfo.GetUnicodeCategory(letter) != UnicodeCategory.NonSpacingMark)
-                    sbReturn.Append(letter);
+                if (CharUnicodeInfo.GetUnicodeCategory(letra) != UnicodeCategory.NonSpacingMark)
+                    sb.Append(letra);
             }
 
-            return sbReturn.ToString();
+            return sb.ToString();
         }
 
         public static string CorrigirOrtografia(this string palavra)

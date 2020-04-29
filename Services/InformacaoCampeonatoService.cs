@@ -14,17 +14,15 @@ namespace Services
     public class InformacaoCampeonatoService : IInformacaoCampeonatoService
     {
         private IHostingEnvironment _env;
-        private readonly ILogger<InformacaoCampeonatoService> _logger;
-        public InformacaoCampeonatoService(IHostingEnvironment env, ILogger<InformacaoCampeonatoService> logger)
+        public InformacaoCampeonatoService(IHostingEnvironment env)
         {
             _env = env;
-            _logger = logger;
         }
 
         public List<Time> ObterInformacoesPorTime(string time)
         {
-            var dadosCampeonato = ObterDadosCampeonato();
-            var timesAgrupadosPorNome = dadosCampeonato.GroupBy(x => x.Nome)
+            var dadosCampeonatos = ObterDadosCampeonatos();
+            var timesAgrupadosPorNome = dadosCampeonatos.GroupBy(x => x.Nome)
                 .Select(
                     g => new
                     {
@@ -33,22 +31,20 @@ namespace Services
                     }
                 ).OrderByDescending(x => x.PontuacaoTotal).ToList();
 
-            var timeComparado = time.ToUpper();
-            timeComparado = timeComparado.RetirarAcentuacao();
+            var timeComparado = time.ToUpper().RetirarAcentuacao();
 
             int posicaoTimeComparado = timesAgrupadosPorNome.FindIndex(x => x.Nome == timeComparado) + 1;
 
-            var informacoesTime = dadosCampeonato.Where(x => x.Nome == timeComparado)
+            var estatisticasTime = dadosCampeonatos.Where(x => x.Nome == timeComparado)
                 .Select(y => { y.Posicao = posicaoTimeComparado; return y; }).ToList();
-            _logger.LogInformation("Lista filtrada para trazer apenas informações do time: {time}.", time);
 
-            return informacoesTime;
+            return estatisticasTime;
         }
 
         public List<Time> ObterInformacoesPorEstado(string estado)
         {
-            var dadosCampeonato = ObterDadosCampeonato();
-            var timesAgrupadosPorEstado = dadosCampeonato.GroupBy(x => x.Estado)
+            var dadosCampeonatos = ObterDadosCampeonatos();
+            var timesAgrupadosPorEstado = dadosCampeonatos.GroupBy(x => x.Estado)
                 .Select(
                     g => new
                     {
@@ -61,17 +57,16 @@ namespace Services
             var estadoComparado = estado.ToUpper();
             int posicaoEstadoComparado = timesAgrupadosPorEstado.FindIndex(x => x.Estado == estadoComparado) + 1;
 
-            var informacoesTime = dadosCampeonato.Where(x => x.Estado == estadoComparado)
+            var estatisticasEstado = dadosCampeonatos.Where(x => x.Estado == estadoComparado)
                 .Select(y => { y.Posicao = posicaoEstadoComparado; return y; }).ToList();
-            _logger.LogInformation("Lista filtrada para trazer apenas informações do estado: {estado}.", estado);
 
-            return informacoesTime;
+            return estatisticasEstado;
         }
 
         public InformacaoComplementar ObterInformacoesComplementares()
         {
-            var dadosCampeonato = ObterDadosCampeonato();
-            var timesAgrupado = dadosCampeonato.GroupBy(x => x.Nome)
+            var dadosCampeonatos = ObterDadosCampeonatos();
+            var timesAgrupadoPorNome = dadosCampeonatos.GroupBy(x => x.Nome)
                 .Select(
                     g => new
                     {
@@ -83,27 +78,21 @@ namespace Services
                     }
                 ).ToList();
 
-            _logger.LogInformation("Times agrupados pelo o nome.");
-
             var informacaoComplementar = new InformacaoComplementar();
 
-            informacaoComplementar.MelhorMediaGolsFavor = timesAgrupado.OrderBy(x => x.MediaGolsFavor).ToList().LastOrDefault().Nome;
-            informacaoComplementar.MelhorMediaGolsContra = timesAgrupado.OrderBy(x => x.MediaGolsContra).ToList().FirstOrDefault().Nome;
-            informacaoComplementar.MaiorNumeroVitorias = timesAgrupado.OrderBy(x => x.Vitorias).ToList().LastOrDefault().Nome;
-            informacaoComplementar.MenorNumeroVitorias = timesAgrupado.OrderBy(x => x.Vitorias).ToList().FirstOrDefault().Nome;
-            informacaoComplementar.MelhorMediaVitoriasPorCampeonato = timesAgrupado.OrderBy(x => x.MediaVitorias).ToList().LastOrDefault().Nome;
-            informacaoComplementar.MenorMediaVitoriasPorCampeonato = timesAgrupado.OrderBy(x => x.MediaVitorias).ToList().FirstOrDefault().Nome;
-
-            _logger.LogInformation("Finalizado lógica de comparação.");
+            informacaoComplementar.MelhorMediaGolsFavor = timesAgrupadoPorNome.OrderBy(x => x.MediaGolsFavor).ToList().LastOrDefault().Nome;
+            informacaoComplementar.MelhorMediaGolsContra = timesAgrupadoPorNome.OrderBy(x => x.MediaGolsContra).ToList().FirstOrDefault().Nome;
+            informacaoComplementar.MaiorNumeroVitorias = timesAgrupadoPorNome.OrderBy(x => x.Vitorias).ToList().LastOrDefault().Nome;
+            informacaoComplementar.MenorNumeroVitorias = timesAgrupadoPorNome.OrderBy(x => x.Vitorias).ToList().FirstOrDefault().Nome;
+            informacaoComplementar.MelhorMediaVitoriasPorCampeonato = timesAgrupadoPorNome.OrderBy(x => x.MediaVitorias).ToList().LastOrDefault().Nome;
+            informacaoComplementar.MenorMediaVitoriasPorCampeonato = timesAgrupadoPorNome.OrderBy(x => x.MediaVitorias).ToList().FirstOrDefault().Nome;
 
             return informacaoComplementar;
         }
 
-        private List<Time> ObterDadosCampeonato()
+        private List<Time> ObterDadosCampeonatos()
         {
             var linhas = File.ReadAllLines(_env.ContentRootPath + "/DadosCampeonato.txt").ToList();
-            _logger.LogInformation("Coletou todos os dados do arquivo.");
-
             var timesFormatados = new List<Time>();
 
             if (linhas != null && linhas.Count > 0)
@@ -139,9 +128,12 @@ namespace Services
                         time.GolsContra = Int32.Parse(linhaTratadaSeparadas[9]);
 
                         timesFormatados.Add(time);
-                        _logger.LogInformation("Adicionou o time: {time}, à lista.", time.Nome);
                     }
                 }
+            }
+            else
+            {
+                throw new ArgumentException("Arquivo não encontrado e/ou inexistente.");
             }
 
             return timesFormatados;

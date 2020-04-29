@@ -3,6 +3,7 @@
     public class Time
     {
         public int AnoParticipacao { get; set; }
+
         public int Posicao { get; set; }
 
         public string Nome { get; set; }
@@ -22,6 +23,5 @@
         public int GolsFavor { get; set; }
 
         public int GolsContra { get; set; }
-
     }
 }
