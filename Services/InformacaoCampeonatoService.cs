@@ -101,31 +101,31 @@ namespace Services
 
                 foreach (var linha in linhas)
                 {
-                    var linhaTratada = linha.Formatar();
+                    var linhaFormatada = linha.Formatar();
                     var time = new Time();
 
-                    var linhaTratadaSeparadas = linhaTratada.Split(",").ToList();
+                    var linhaTratada = linhaFormatada.Split(",").ToList();
 
-                    if (linhaTratadaSeparadas != null && linhaTratadaSeparadas.Count == 1 && linhaTratadaSeparadas[0].Length == 4)
+                    if (linhaTratada != null && linhaTratada.Count == 1 && linhaTratada[0].Length == 4)
                     {
-                        anoParticipacao = Int32.Parse(linhaTratadaSeparadas[0]);
+                        anoParticipacao = Int32.Parse(linhaTratada[0]);
                     }
 
-                    if (linhaTratadaSeparadas != null && linhaTratadaSeparadas.Count == 10 && !linhaTratadaSeparadas[0].Contains("POS"))
+                    if (linhaTratada != null && linhaTratada.Count == 10 && !linhaTratada[0].Contains("POS"))
                     {
-                        linhaTratadaSeparadas[1] = linhaTratadaSeparadas[1].CorrigirOrtografia();
+                        linhaTratada[1] = linhaTratada[1].CorrigirOrtografia();
 
                         time.AnoParticipacao = anoParticipacao;
-                        time.Posicao = Int32.Parse(linhaTratadaSeparadas[0]);
-                        time.Nome = linhaTratadaSeparadas[1];
-                        time.Estado = linhaTratadaSeparadas[2];
-                        time.Pontos = Int32.Parse(linhaTratadaSeparadas[3]);
-                        time.Jogos = Int32.Parse(linhaTratadaSeparadas[4]);
-                        time.Vitorias = Int32.Parse(linhaTratadaSeparadas[5]);
-                        time.Empates = Int32.Parse(linhaTratadaSeparadas[6]);
-                        time.Derrotas = Int32.Parse(linhaTratadaSeparadas[7]);
-                        time.GolsFavor = Int32.Parse(linhaTratadaSeparadas[8]);
-                        time.GolsContra = Int32.Parse(linhaTratadaSeparadas[9]);
+                        time.Posicao = Int32.Parse(linhaTratada[0]);
+                        time.Nome = linhaTratada[1];
+                        time.Estado = linhaTratada[2];
+                        time.Pontos = Int32.Parse(linhaTratada[3]);
+                        time.Jogos = Int32.Parse(linhaTratada[4]);
+                        time.Vitorias = Int32.Parse(linhaTratada[5]);
+                        time.Empates = Int32.Parse(linhaTratada[6]);
+                        time.Derrotas = Int32.Parse(linhaTratada[7]);
+                        time.GolsFavor = Int32.Parse(linhaTratada[8]);
+                        time.GolsContra = Int32.Parse(linhaTratada[9]);
 
                         timesFormatados.Add(time);
                     }
