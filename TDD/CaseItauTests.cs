@@ -101,13 +101,27 @@ namespace TDD
         [Fact]
         public void Obter_Informacoes_Complementares_Teste_Valido()
         {
+            List<AnalisePorCampeonato> melhoresPorAno = new List<AnalisePorCampeonato>();
+            melhoresPorAno.Add(new AnalisePorCampeonato { AnoParticipacao = 2015, Nome = "Corinthians", PercentualVitorias = 63.16 });
+            melhoresPorAno.Add(new AnalisePorCampeonato { AnoParticipacao = 2016, Nome = "Palmeiras", PercentualVitorias = 63.16 });
+            melhoresPorAno.Add(new AnalisePorCampeonato { AnoParticipacao = 2017, Nome = "Corinthians", PercentualVitorias = 55.26 });
+            melhoresPorAno.Add(new AnalisePorCampeonato { AnoParticipacao = 2018, Nome = "Palmeiras", PercentualVitorias = 60.53 });
+            melhoresPorAno.Add(new AnalisePorCampeonato { AnoParticipacao = 2019, Nome = "Flamengo", PercentualVitorias = 73.68 });
+
+            List<AnalisePorCampeonato> pioresPorAno = new List<AnalisePorCampeonato>();
+            pioresPorAno.Add(new AnalisePorCampeonato { AnoParticipacao = 2015, Nome = "Joinvile", PercentualVitorias = 18.42 });
+            pioresPorAno.Add(new AnalisePorCampeonato { AnoParticipacao = 2016, Nome = "America mineiro", PercentualVitorias = 18.42 });
+            pioresPorAno.Add(new AnalisePorCampeonato { AnoParticipacao = 2017, Nome = "Atletico goias", PercentualVitorias = 23.68 });
+            pioresPorAno.Add(new AnalisePorCampeonato { AnoParticipacao = 2018, Nome = "Parana", PercentualVitorias = 10.53 });
+            pioresPorAno.Add(new AnalisePorCampeonato { AnoParticipacao = 2019, Nome = "Avai", PercentualVitorias = 7.89 });
+
             InformacaoComplementar dados = new InformacaoComplementar()
             {
                 MaiorNumeroVitorias = "Palmeiras",
                 MelhorMediaGolsContra = "São Paulo",
                 MelhorMediaGolsFavor = "Corinthians",
-                MelhorMediaVitoriasPorCampeonato = "Santos",
-                MenorMediaVitoriasPorCampeonato = "Parana",
+                MelhorMediaVitoriasPorCampeonato = melhoresPorAno,
+                MenorMediaVitoriasPorCampeonato = pioresPorAno,
                 MenorNumeroVitorias = "Joinville"
             };
 

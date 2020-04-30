@@ -1,4 +1,6 @@
-﻿namespace Domain.DTOs
+﻿using System.Collections.Generic;
+
+namespace Domain.DTOs
 {
     public class InformacaoComplementar
     {
@@ -10,8 +12,8 @@
 
         public string MenorNumeroVitorias { get; set; }
 
-        public string MelhorMediaVitoriasPorCampeonato { get; set; }
+        public ICollection<AnalisePorCampeonato> MelhorMediaVitoriasPorCampeonato { get; set; }
 
-        public string MenorMediaVitoriasPorCampeonato { get; set; }
+        public ICollection<AnalisePorCampeonato> MenorMediaVitoriasPorCampeonato { get; set; }
     }
 }

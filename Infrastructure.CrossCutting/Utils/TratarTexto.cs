@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Linq;
 using System.Text;
 
 namespace Infrastructure.CrossCutting.Utils
@@ -46,6 +47,11 @@ namespace Infrastructure.CrossCutting.Utils
             }
 
             return palavra;
+        }
+
+        public static string PrimeiraLetraMaiuscula(this string palavra)
+        {
+            return char.ToUpper(palavra.First()) + palavra.Substring(1).ToLower();
         }
     }
 }

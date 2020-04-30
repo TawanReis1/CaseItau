@@ -66,11 +66,35 @@ namespace Services
         public InformacaoComplementar ObterInformacoesComplementares()
         {
             var dadosCampeonatos = ObterDadosCampeonatos();
+            var timesAgrupadosPorAno = dadosCampeonatos.GroupBy(x => x.AnoParticipacao).ToList();
+
+            List<AnalisePorCampeonato> analisePorCampeonato = new List<AnalisePorCampeonato>();
+            List<AnalisePorCampeonato> melhoresPorCampeonato = new List<AnalisePorCampeonato>();
+            List<AnalisePorCampeonato> pioresPorCampeonato = new List<AnalisePorCampeonato>();
+
+            foreach (var ano in timesAgrupadosPorAno)
+            {
+                analisePorCampeonato = new List<AnalisePorCampeonato>();
+
+                foreach (var time in ano)
+                {
+                    string nomeTime = time.Nome.PrimeiraLetraMaiuscula();
+                    double percentualVitorias = ((double)time.Vitorias / (double)time.Jogos) * 100;
+
+                    analisePorCampeonato.Add(new AnalisePorCampeonato { AnoParticipacao = ano.Key, Nome = nomeTime, PercentualVitorias = Math.Round(percentualVitorias, 2) });
+                }
+
+                analisePorCampeonato.OrderByDescending(x => x.PercentualVitorias);
+
+                melhoresPorCampeonato.Add(analisePorCampeonato.FirstOrDefault());
+                pioresPorCampeonato.Add(analisePorCampeonato.LastOrDefault());
+            }
+
             var timesAgrupadoPorNome = dadosCampeonatos.GroupBy(x => x.Nome)
                 .Select(
                     g => new
                     {
-                        Nome = char.ToUpper(g.Key.First()) + g.Key.Substring(1).ToLower(),
+                        Nome = g.Key.PrimeiraLetraMaiuscula(),
                         Vitorias = g.Sum(s => s.Vitorias),
                         MediaVitorias = g.Average(s => s.Vitorias),
                         MediaGolsFavor = g.Average(s => s.GolsFavor),
@@ -84,8 +108,8 @@ namespace Services
             informacaoComplementar.MelhorMediaGolsContra = timesAgrupadoPorNome.OrderBy(x => x.MediaGolsContra).ToList().FirstOrDefault().Nome;
             informacaoComplementar.MaiorNumeroVitorias = timesAgrupadoPorNome.OrderBy(x => x.Vitorias).ToList().LastOrDefault().Nome;
             informacaoComplementar.MenorNumeroVitorias = timesAgrupadoPorNome.OrderBy(x => x.Vitorias).ToList().FirstOrDefault().Nome;
-            informacaoComplementar.MelhorMediaVitoriasPorCampeonato = timesAgrupadoPorNome.OrderBy(x => x.MediaVitorias).ToList().LastOrDefault().Nome;
-            informacaoComplementar.MenorMediaVitoriasPorCampeonato = timesAgrupadoPorNome.OrderBy(x => x.MediaVitorias).ToList().FirstOrDefault().Nome;
+            informacaoComplementar.MelhorMediaVitoriasPorCampeonato = melhoresPorCampeonato;
+            informacaoComplementar.MenorMediaVitoriasPorCampeonato = pioresPorCampeonato;
 
             return informacaoComplementar;
         }
