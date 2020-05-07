@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using Infrastructure.CrossCutting.Utils;
 using Domain.DTOs;
-using Microsoft.Extensions.Logging;
 
 namespace Services
 {

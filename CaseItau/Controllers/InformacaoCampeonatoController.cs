@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Domain.DTOs;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Net;
 
 namespace API.Controllers
 {
